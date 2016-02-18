@@ -1,2 +1,2 @@
-# ticket-tracker
-Host a website to allow people to order tickets online.
+# Ticket Tracker
+Use this website to allow users to reserve tickets online.
