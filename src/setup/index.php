@@ -1,3 +1,9 @@
+<?php
+require_once('../php/prepend.php');
+
+$setup = new Setup();
+$setup->requireSetupEnabled();
+?>
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
@@ -8,9 +14,68 @@
     <title>Ticket Tracker Setup</title>
 
     <!-- CSS dependencies -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
   </head>
   <body>
+    <!-- License modal -->
+    <div class="modal fade" id="licenseModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">License Information</h4>
+          </div>
+          <div class="modal-body">
+            <h4>The MIT License (MIT)</h4>
+            <p>Copyright (c) 2016 Andrew Regan</p>
+            <p>
+              Permission is hereby granted, free of charge, to any person obtaining a copy
+              of this software and associated documentation files (the "Software"), to deal
+              in the Software without restriction, including without limitation the rights
+              to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+              copies of the Software, and to permit persons to whom the Software is
+              furnished to do so, subject to the following conditions:
+            </p>
+            <p>
+              The above copyright notice and this permission notice shall be included in all
+              copies or substantial portions of the Software.
+            </p>
+            <p>
+              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+              IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+              FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+              AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+              LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+              OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+              SOFTWARE.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="container" id="content">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="panel panel-primary">
+            <div class="panel-heading">Step Number</div>
+            <div class="panel-body">
+
+            </div>
+            <div class="panel-footer">
+              Created by <a href="https://github.com/andrewregan">Andrew Regan</a>, licensed under the <a href="" data-toggle="modal" data-target="#licenseModal">MIT License</a>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Print the code for the current page -->
+    <?php //$setup->echoPage(); ?>
+
     <!-- JavaScript dependencies -->
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
