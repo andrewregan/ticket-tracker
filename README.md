@@ -24,19 +24,13 @@ HTML Tag Order:
 - `title, alt`
 - `role, aria-*`
 
----
-
 ### CSS
 
 - [Code Guide by @mdo](http://codeguide.co/#css-declaration-order)
 
----
-
 ### JavaScript
 
 - [W3 Schools](http://www.w3schools.com/js/js_conventions.asp)
-
----
 
 ### PHP
 
