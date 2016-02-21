@@ -1,10 +1,10 @@
 <?php
-require_once('../php/prepend.php');
+require_once(dirname(__FILE__) . '/../php/prepend.php');
 
 $setup = new Setup();
 $setup->requireSetupEnabled();
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@ $setup->requireSetupEnabled();
 
     <!-- CSS dependencies -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/setup.css" rel="stylesheet">
   </head>
   <body>
     <!-- License modal -->
@@ -23,7 +23,7 @@ $setup->requireSetupEnabled();
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button class="close" data-dismiss="modal" type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">License Information</h4>
           </div>
           <div class="modal-body">
@@ -52,7 +52,7 @@ $setup->requireSetupEnabled();
             </p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -62,22 +62,19 @@ $setup->requireSetupEnabled();
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <div class="panel panel-primary">
-            <div class="panel-heading">Step Number</div>
-            <div class="panel-body">
-
-            </div>
+            <div class="panel-heading" id="stepTitle"><b>Step 1 of 4: </b> Connect to a MySQL database</div>
+            <div class="panel-body" id="stepContent"></div>
             <div class="panel-footer">
-              Created by <a href="https://github.com/andrewregan">Andrew Regan</a>, licensed under the <a href="" data-toggle="modal" data-target="#licenseModal">MIT License</a>.
+              Created by <a href="https://github.com/andrewregan" target="_blank">Andrew Regan</a>, licensed under the <a data-toggle="modal" data-target="#licenseModal" href="">MIT License</a>.
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Print the code for the current page -->
-    <?php //$setup->echoPage(); ?>
 
     <!-- JavaScript dependencies -->
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/setup.js"></script>
   </body>
 </html>

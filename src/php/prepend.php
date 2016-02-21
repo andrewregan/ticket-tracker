@@ -1,7 +1,7 @@
 <?php
 /*
   This file should be required in every php file.
-  require_once('../php/prepend.php');
+  require_once(dirname(__FILE__) . '/../php/prepend.php');
 */
 
 // Automatically load any classes.

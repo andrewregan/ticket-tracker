@@ -11,5 +11,6 @@
     "username": "root@localhost",
     "password": ""
   },
-  "setup_enabled": true
+  "setup_enabled": true,
+  "setup_step": 0
 }
