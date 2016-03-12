@@ -4,6 +4,7 @@ function loadStep() {
 
         if (response.success) {
             $('#stepContent').html(response.code);
+            $('#stepTitle').html(response.title);
         }
     });
 }

@@ -12,7 +12,13 @@ spl_autoload_register(function ($class_name) {
 });
 
 // Return json when a script ends.
-function return_json($json) {
+function return_json($json = false) {
+  // If no arguements are passed, success is false.
+  if ($json === false) $json = ['success' => false];
+
+  // If a true value is passed, success is true!
+  if ($json === true) $json = ['success' => true];
+
   // Assume that success is false if not true.
   if (!isset($json['success'])) $json['success'] = false;
 

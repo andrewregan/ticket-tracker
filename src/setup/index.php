@@ -62,7 +62,7 @@ $setup->requireSetupEnabled();
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <div class="panel panel-primary">
-            <div class="panel-heading" id="stepTitle"><b>Step 1 of 4: </b> Connect to a MySQL database</div>
+            <div class="panel-heading" id="stepTitle"></div>
             <div class="panel-body" id="stepContent"></div>
             <div class="panel-footer">
               Created by <a href="https://github.com/andrewregan" target="_blank">Andrew Regan</a>, licensed under the <a data-toggle="modal" data-target="#licenseModal" href="">MIT License</a>.
