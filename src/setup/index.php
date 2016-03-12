@@ -61,6 +61,7 @@ $setup->requireSetupEnabled();
     <div class="container" id="content">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
+          <div id="stepWarning"></div>
           <div class="panel panel-primary">
             <div class="panel-heading" id="stepTitle"></div>
             <div class="panel-body" id="stepContent"></div>

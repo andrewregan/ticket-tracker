@@ -1,3 +1,5 @@
+var step = 0;
+
 function attachEventHandlers() {
     $('#nextStep').click(function() {
         nextStep();
@@ -14,6 +16,8 @@ function loadStep() {
         if (response.success) {
             $('#stepContent').html(response.code);
             $('#stepTitle').html(response.title);
+
+            step = response.step;
 
             attachEventHandlers();
         }
@@ -42,7 +46,8 @@ function nextStep() {
     data = JSON.stringify(data);
 
     $.post('../php/script/setup-run-step.php', {
-        data: data
+        data: data,
+        step: step
     }, function(response) {
         var response = jQuery.parseJSON(response);
 
@@ -52,7 +57,11 @@ function nextStep() {
             } else {
                 loadStep();
             }
+        } else {
+            loadStep();
         }
+
+        $('#stepWarning').html(response.warning);
     });
 }
 
@@ -62,6 +71,7 @@ function resetSetup() {
 
         if (response.success) {
             loadStep();
+            $('#stepWarning').html('');
         }
     });
 }

@@ -4,7 +4,7 @@ $config = [
     'sql' => [
         'host' => 'localhost',
         'port' => 3306,
-        'table' => '',
+        'database' => '',
         'username' => 'root',
         'password' => ''
     ],

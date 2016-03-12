@@ -15,7 +15,7 @@ $config = [
     'sql' => [
         'host' => '!sql_host',
         'port' => !sql_port,
-        'table' => '!sql_table',
+        'database' => '!sql_database',
         'username' => '!sql_username',
         'password' => '!sql_password'
     ],

@@ -56,9 +56,9 @@ $step[] = <<<HTML
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-3 control-label" for="inputTable">Table:</label>
+    <label class="col-sm-3 control-label" for="inputDatabase">Database:</label>
     <div class="col-sm-9">
-      <input class="form-control" id="inputTable" type="text">
+      <input class="form-control" id="inputDatabase" type="text">
     </div>
   </div>
   <div class="form-group">
