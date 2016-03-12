@@ -1,16 +1,7 @@
 <?php
 require_once(dirname(__FILE__) . '/../prepend.php');
 
-// manually load and execute config file
-// config.php not loading normally because of a cache issue?
-if (file_exists(dirname(__FILE__) . '/../config.php')) {
-    $settings = file_get_contents(dirname(__FILE__) . '/../config.php');
-    $settings = str_replace('<?php', '', $settings);
-    eval($settings);
-    unset($settings);
-}
-
-$setup = new Setup();
+$setup = new Setup(true);
 $setup->requireSetupEnabled();
 
 $title[] = "License Agreement";

@@ -4,8 +4,11 @@ class Setup
     public $currentStep = 0;
     public $setupEbabled = false;
 
-    function __construct()
+    function __construct($reload_config = false)
     {
+        // config.php not loading normally because of a cache issue?
+        if ($reload_config) $this->reloadConfig();
+
         $this->loadConfigInfo();
     }
 
@@ -18,6 +21,19 @@ class Setup
             : 0;
         $this->setupEnabled = (isset($config['setup_enabled']) &&
             $config['setup_enabled'] === true);
+    }
+
+    protected function reloadConfig()
+    {
+        global $config;
+
+        // manually load and execute config file
+        if (file_exists(dirname(__FILE__) . '/../config.php')) {
+            $settings = file_get_contents(dirname(__FILE__) . '/../config.php');
+            $settings = str_replace('<?php', '', $settings);
+            eval($settings);
+            unset($settings);
+        }
     }
 
     public function requireSetupEnabled()
