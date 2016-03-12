@@ -40,7 +40,7 @@ function require_valid($json) {
 
 // Load the config file if it exists.
 if (file_exists(dirname(__FILE__) . '/config.php')) {
-    require_once(dirname(__FILE__) . '/config.php');
+    require(dirname(__FILE__) . '/config.php');
 } else {
-    require_once(dirname(__FILE__) . '/config.default.php');
+    require(dirname(__FILE__) . '/config.default.php');
 }

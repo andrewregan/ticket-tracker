@@ -44,9 +44,7 @@ function nextStep() {
         var response = jQuery.parseJSON(response);
 
         if (response.success) {
-            setTimeout(function() {
-                loadStep();
-            }, 700);
+            loadStep();
         }
     });
 }
