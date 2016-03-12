@@ -5,24 +5,26 @@ $setup = new Setup();
 $setup->requireSetupEnabled();
 
 $config_new = $config;
-$config_template = <<<JSON
-{
-  "sql": {
-    "host": "!sql_host",
-    "port": !sql_port,
-    "username": "!sql_username",
-    "password": "!sql_password"
-  },
-  "mail": {
-    "host": "!mail_host",
-    "port": !mail_port,
-    "username": "!mail_username",
-    "password": "!mail_password"
-  },
-  "setup_enabled": !setup_enabled,
-  "setup_step": !setup_step
-}
-JSON;
+$config_template = <<<'PHP'
+<?php
+
+$config = [
+    'sql' => [
+        'host' => '!sql_host',
+        'port' => !sql_port,
+        'username' => '!sql_username',
+        'password' => '!sql_password'
+    ],
+    'mail' => [
+        'host' => '!mail_host',
+        'port' => !mail_port,
+        'username' => '!mail_username',
+        'password' => '!mail_password'
+    ],
+    'setup_enabled' => !setup_enabled,
+    'setup_step' => !setup_step
+];
+PHP;
 
 // get data from post
 $data = (isset($_POST['data'])) ? $_POST['data'] : '{}';
@@ -32,6 +34,13 @@ $data = json_decode($data, true);
 switch ($setup->currentStep) {
     case 0:
         $config_new['setup_step'] = 1;
+        break;
+
+    case 1:
+        $config_new['sql']['host'] = $data['host'];
+        $config_new['sql']['port'] = $data['port'];
+        $config_new['sql']['username'] = $data['username'];
+        $config_new['sql']['password'] = $data['password'];
         break;
 
     default:

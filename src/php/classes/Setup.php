@@ -63,7 +63,7 @@ class Setup
 
         // save the configuration file
         $success = save_file(
-            dirname(__FILE__) . '/../config.json',
+            dirname(__FILE__) . '/../config.php',
             $config_template
         );
 

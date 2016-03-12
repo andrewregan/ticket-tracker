@@ -51,17 +51,9 @@ function save_file($file, $code) {
     }
 }
 
-// Return an array from a json file.
-function load_json_file($file) {
-    if (!file_exists($file)) return false;
-
-    $json = file_get_contents($file);
-    return json_decode($json, true);
-}
-
 // Load the config file if it exists.
-if (file_exists(dirname(__FILE__) . '/config.json')) {
-    $config = load_json_file(dirname(__FILE__) . '/config.json');
+if (file_exists(dirname(__FILE__) . '/config.php')) {
+    require_once(dirname(__FILE__) . '/config.php');
 } else {
-    $config = load_json_file(dirname(__FILE__) . '/config.default.json');
+    require_once(dirname(__FILE__) . '/config.default.php');
 }
