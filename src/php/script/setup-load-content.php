@@ -34,7 +34,7 @@ $step[] = <<<HTML
   <br>
   <div class="form-group">
     <div class="col-sm-12">
-      <button class="btn btn-primary pull-right" type="submit">Agree</button>
+      <a class="btn btn-primary pull-right" id="nextStep">Agree</a>
     </div>
   </div>
 </form>
@@ -75,7 +75,7 @@ $step[] = <<<HTML
   </div>
   <div class="form-group">
     <div class="col-sm-12">
-      <button class="btn btn-primary pull-right" type="submit">Step 2 <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
+      <a class="btn btn-primary pull-right" id="nextStep">Step 2 <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></a>
     </div>
   </div>
 </form>
@@ -114,7 +114,7 @@ $step[] = <<<HTML
   </div>
   <div class="form-group">
     <div class="col-sm-12">
-      <button class="btn btn-primary pull-right" type="submit">Step 3 <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
+      <a class="btn btn-primary pull-right" id="nextStep">Step 3 <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></a>
     </div>
   </div>
 </form>
@@ -137,7 +137,7 @@ $step[] = <<<HTML
   </div>
   <div class="form-group">
     <div class="col-sm-12">
-      <button class="btn btn-primary pull-right" type="submit">Finish</button>
+      <a class="btn btn-primary pull-right" id="nextStep">Finish</a>
     </div>
   </div>
 </form>

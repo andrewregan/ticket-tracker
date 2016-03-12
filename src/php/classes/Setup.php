@@ -62,11 +62,11 @@ class Setup
         }
 
         // save the configuration file
-        $success = save_file(
+        $success = (file_put_contents(
             dirname(__FILE__) . '/../config.php',
             $config_template
-        );
+        ) !== false);
 
-        return $success;
+        return $config_template;
     }
 }

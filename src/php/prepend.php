@@ -38,19 +38,6 @@ function require_valid($json) {
     }
 }
 
-// Save a string to a file.
-function save_file($file, $code) {
-    try {
-        $file_handle = fopen($file, 'w');
-        fwrite($file_handle, $code);
-        fclose($file_handle);
-
-        return true;
-    } catch (Exception $e) {
-        return false;
-    }
-}
-
 // Load the config file if it exists.
 if (file_exists(dirname(__FILE__) . '/config.php')) {
     require_once(dirname(__FILE__) . '/config.php');
