@@ -50,7 +50,7 @@ function load_json_file($file) {
 }
 
 // Load the config file if it exists.
-if (file_exists('config.json')) {
+if (file_exists(dirname(__FILE__) . '/config.json')) {
   $config = load_json_file(dirname(__FILE__) . '/config.json');
 } else {
   $config = load_json_file(dirname(__FILE__) . '/config.default.json');
