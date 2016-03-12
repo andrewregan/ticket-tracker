@@ -62,15 +62,11 @@ class Setup
         }
 
         // save the configuration file
-        try {
-            $file_handle = fopen(dirname(__FILE__) . '/../config.php', 'w');
-            fwrite($file_handle, $config_template);
-            fflush($file_handle);   // flush the cache
-            fclose($file_handle);
+        $success = (file_put_contents(
+            dirname(__FILE__) . '/../config.php',
+            $config_template
+        ) !== false);
 
-            return true;
-        } catch (Exception $e) {
-            return false;
-        }
+        return $success;
     }
 }
