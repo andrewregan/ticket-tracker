@@ -84,7 +84,10 @@ $step[] = <<<HTML
   </div>
   <div class="form-group">
     <div class="col-sm-12">
-      <a class="btn btn-primary pull-right" id="nextStep">Step 2 <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></a>
+      <div class="pull-right">
+        <a class="btn btn-default" id="resetSetup"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span> Restart</a>
+        <a class="btn btn-primary" id="nextStep">Step 2 <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></a>
+      </div>
     </div>
   </div>
 </form>
@@ -123,7 +126,10 @@ $step[] = <<<HTML
   </div>
   <div class="form-group">
     <div class="col-sm-12">
-      <a class="btn btn-primary pull-right" id="nextStep">Step 3 <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></a>
+      <div class="pull-right">
+        <a class="btn btn-default" id="resetSetup"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span> Restart</a>
+        <a class="btn btn-primary" id="nextStep">Step 3 <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></a>
+      </div>
     </div>
   </div>
 </form>
@@ -146,7 +152,10 @@ $step[] = <<<HTML
   </div>
   <div class="form-group">
     <div class="col-sm-12">
-      <a class="btn btn-primary pull-right" id="nextStep">Finish</a>
+      <div class="pull-right">
+        <a class="btn btn-default" id="resetSetup"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span> Restart</a>
+        <a class="btn btn-primary" id="nextStep">Finish <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></a>
+      </div>
     </div>
   </div>
 </form>

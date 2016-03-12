@@ -2,6 +2,9 @@ function attachEventHandlers() {
     $('#nextStep').click(function() {
         nextStep();
     });
+    $('#resetSetup').click(function() {
+        resetSetup();
+    });
 }
 
 function loadStep() {
@@ -41,6 +44,20 @@ function nextStep() {
     $.post('../php/script/setup-run-step.php', {
         data: data
     }, function(response) {
+        var response = jQuery.parseJSON(response);
+
+        if (response.success) {
+            if (response.next_step == 4) {
+                window.location = '../';
+            } else {
+                loadStep();
+            }
+        }
+    });
+}
+
+function resetSetup() {
+    $.post('../php/script/setup-reset.php', function(response) {
         var response = jQuery.parseJSON(response);
 
         if (response.success) {

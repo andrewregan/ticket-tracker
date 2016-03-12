@@ -1,6 +1,15 @@
 <?php
 require_once(dirname(__FILE__) . '/../prepend.php');
 
+// manually load and execute config file
+// config.php not loading normally because of a cache issue?
+if (file_exists(dirname(__FILE__) . '/../config.php')) {
+    $settings = file_get_contents(dirname(__FILE__) . '/../config.php');
+    $settings = str_replace('<?php', '', $settings);
+    eval($settings);
+    unset($settings);
+}
+
 $setup = new Setup();
 $setup->requireSetupEnabled();
 
@@ -47,12 +56,24 @@ switch ($setup->currentStep) {
         break;
 
     case 2:
+        $config_new['mail']['host'] = $data['host'];
+        $config_new['mail']['port'] = $data['port'];
+        $config_new['mail']['username'] = $data['username'];
+        $config_new['mail']['password'] = $data['password'];
+        $config_new['setup_step']++;
+        break;
+
+    case 3:
+        $config_new['setup_step']++;
+        $config_new['setup_enabled'] = false;
         break;
 
     default:
         $json['error'] = 'unknown_step';
         return_json($json);
 }
+
+$json['next_step'] = $config_new['setup_step'];
 
 // save the new configuration file
 $json['success'] = ($setup->saveConfigFile(
