@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '/../prepend.php');
+require_once(dirname(__FILE__) . '/../../resources/prepend.php');
 
 $setup = new Setup(true);
 $setup->requireSetupEnabled();
@@ -75,7 +75,8 @@ switch ($setup->currentStep) {
         }
 
         // upload the new database
-        $default_sql = file_get_contents(dirname(__FILE__) . '/../default.sql');
+        $default_sql = file_get_contents(dirname(__FILE__) .
+            '/../../resources/default.sql');
         $mysqli->multi_query($default_sql);
 
         // set new configuration information to save
@@ -88,7 +89,7 @@ switch ($setup->currentStep) {
         break;
 
     case 2:
-        
+
         $config_new['setup_step']++;
         break;
 

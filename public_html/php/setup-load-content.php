@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '/../prepend.php');
+require_once(dirname(__FILE__) . '/../../resources/prepend.php');
 
 $setup = new Setup(true);
 $setup->requireSetupEnabled();

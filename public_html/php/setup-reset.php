@@ -1,11 +1,11 @@
 <?php
-require_once(dirname(__FILE__) . '/../prepend.php');
+require_once(dirname(__FILE__) . '/../../resources/prepend.php');
 
 $setup = new Setup(true);
 $setup->requireSetupEnabled();
 
 // load the default config file
-require(dirname(__FILE__) . '/../config.default.php');
+require(dirname(__FILE__) . '/../../resources/config.default.php');
 
 $config_new = $config;
 $config_template = <<<'PHP'
