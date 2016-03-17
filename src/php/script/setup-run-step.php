@@ -74,7 +74,11 @@ switch ($setup->currentStep) {
             break;
         }
 
+        // upload the new database
+        $default_sql = file_get_contents(dirname(__FILE__) . '/../default.sql');
+        $mysqli->multi_query($default_sql);
 
+        // set new configuration information to save
         $config_new['sql']['host'] = $data['host'];
         $config_new['sql']['port'] = $data['port'];
         $config_new['sql']['database'] = $data['database'];

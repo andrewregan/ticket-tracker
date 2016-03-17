@@ -19,12 +19,6 @@ $config = [
         'username' => '!sql_username',
         'password' => '!sql_password'
     ],
-    'mail' => [
-        'host' => '!mail_host',
-        'port' => !mail_port,
-        'username' => '!mail_username',
-        'password' => '!mail_password'
-    ],
     'setup_enabled' => !setup_enabled,
     'setup_step' => !setup_step
 ];
