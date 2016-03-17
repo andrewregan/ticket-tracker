@@ -16,12 +16,6 @@ $config = [
         'username' => '!sql_username',
         'password' => '!sql_password'
     ],
-    'mail' => [
-        'host' => '!mail_host',
-        'port' => !mail_port,
-        'username' => '!mail_username',
-        'password' => '!mail_password'
-    ],
     'setup_enabled' => !setup_enabled,
     'setup_step' => !setup_step
 ];
@@ -90,22 +84,6 @@ switch ($setup->currentStep) {
         break;
 
     case 2:
-        if (
-            $data['host'] == '' ||
-            $data['port'] < 1 ||
-            $data['username'] == ''
-        ) {
-            $warning[] = [
-                'type' => 'warning',
-                'title' => 'Invalid input',
-                'text' => 'One or more fields are missing or blank.'
-            ];
-            break;
-        }
-        $config_new['mail']['host'] = $data['host'];
-        $config_new['mail']['port'] = $data['port'];
-        $config_new['mail']['username'] = $data['username'];
-        $config_new['mail']['password'] = $data['password'];
         $config_new['setup_step']++;
         break;
 
