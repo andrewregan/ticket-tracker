@@ -88,6 +88,7 @@ switch ($setup->currentStep) {
         break;
 
     case 2:
+        
         $config_new['setup_step']++;
         break;
 
