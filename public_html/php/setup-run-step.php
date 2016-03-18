@@ -79,6 +79,8 @@ switch ($setup->currentStep) {
             '/../../resources/default.sql');
         $mysqli->multi_query($default_sql);
 
+        $mysqli->close();
+
         // set new configuration information to save
         $config_new['sql']['host'] = $data['host'];
         $config_new['sql']['port'] = $data['port'];
@@ -89,7 +91,6 @@ switch ($setup->currentStep) {
         break;
 
     case 2:
-
         $config_new['setup_step']++;
         break;
 
