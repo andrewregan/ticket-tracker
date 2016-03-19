@@ -103,8 +103,35 @@ switch ($setup->currentStep) {
         break;
 
     case 3:
-        $config_new['setup_step']++;
-        $config_new['setup_enabled'] = false;
+        $accounts = new Accounts();
+
+        // check if the email given is correct
+        if (!$accounts->checkEmail($data['username'])) {
+            $warning[] = [
+                'type' => 'warning',
+                'title' => 'Invalid email',
+                'text' => 'The email that you entered is not valid, please ' .
+                    'enter a valid email address.'
+            ];
+            break;
+        }
+
+        // check if password is not strong enough
+        if (!$accounts->checkPassword($data['password'])) {
+            $warning[] = [
+                'type' => 'warning',
+                'title' => 'Weak password',
+                'text' => 'The password you entered is not strong enough; ' .
+                    'passwords must contain a lowercase and uppercase ' .
+                    'character as well as a number or special character.'
+            ];
+            break;
+        }
+
+        $accounts->createAccount($data['username'], $data['password']);
+
+        // setup is now complete
+        //$config_new['setup_enabled'] = false;
         break;
 
     default:

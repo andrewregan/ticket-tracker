@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `accounts` (
   `id` int(11) NOT NULL,
   `email` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `password` int(11) NOT NULL
+  `password` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
