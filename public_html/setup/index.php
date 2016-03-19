@@ -2,7 +2,7 @@
 require_once(dirname(__FILE__) . '/../../resources/prepend.php');
 
 $setup = new Setup();
-$setup->requireSetupEnabled();
+$setup->requireSetupEnabled(true);
 ?>
 <!doctype html>
 <html lang="en-us">

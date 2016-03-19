@@ -50,7 +50,7 @@ class Connect extends mysqli
         $result = $this->query($query);
 
         // get the row of data
-        return ($result->num_rows > 0) ? $result->fetch_assoc : [];
+        return (($result->num_rows > 0) ? $result->fetch_assoc() : []);
     }
 
     public function simpleUpdate(

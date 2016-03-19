@@ -53,7 +53,9 @@ function nextStep() {
 
         if (response.success) {
             if (response.next_step == 4) {
-                window.location = '../';
+                setTimeout(function() {
+                    window.location.reload(true);
+                }, 3000);
             } else {
                 loadStep();
             }

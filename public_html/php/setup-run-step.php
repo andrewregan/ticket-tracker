@@ -129,9 +129,16 @@ switch ($setup->currentStep) {
         }
 
         $accounts->createAccount($data['username'], $data['password']);
+        $warning[] = [
+            'type' => 'success',
+            'title' => 'Setup complete',
+            'text' => 'The setup is now finished, you will be redirected in ' .
+                'a few seconds. Log in with your username and password.'
+        ];
 
         // setup is now complete
-        //$config_new['setup_enabled'] = false;
+        $config_new['setup_step']++;
+        $config_new['setup_enabled'] = false;
         break;
 
     default:
@@ -142,6 +149,7 @@ switch ($setup->currentStep) {
 $json['next_step'] = $config_new['setup_step'];
 
 // make a list of warnings to display to user
+$success = true;
 $json['warning'] = '';
 foreach ($warning as $value) {
     $warning_type = $value['type'];
@@ -157,12 +165,12 @@ foreach ($warning as $value) {
   <strong>$warning_title: </strong>$warning_text
 </div>
 HTML;
+
+    if ($warning_type !== 'success') $success = false;
 }
 
-// exit if there are any warnings
-if ($json['warning'] != '') {
-  return_json($json);
-}
+// exit if there are any bad warnings
+if (!$success) return_json($json);
 
 // save the new configuration file
 $json['success'] = ($setup->saveConfigFile(

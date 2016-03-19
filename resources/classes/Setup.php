@@ -2,7 +2,7 @@
 class Setup
 {
     public $currentStep = 0;
-    public $setupEbabled = false;
+    public $setupEnabled = false;
 
     public function __construct($reload_config = false)
     {
@@ -36,14 +36,19 @@ class Setup
         }
     }
 
-    public function requireSetupEnabled()
+    public function requireSetupEnabled($redirect = false)
     {
-        global $config;
+        // redirect user to main page if not signed in
+        if (!$this->setupEnabled) {
+            // set the response header
+            if ($redirect === true) {
+                header("Location: /");
+            } else {
+                header("HTTP/1.1 500 Internal Server Error");
+            }
 
-        // throw error if setup is disabled in config
-        if ($config['setup_enabled'] !== true) {
-            $parent = dirname($_SERVER['REQUEST_URI']);
-            header("Location: $parent/");
+            // end the connection
+            die();
         }
     }
 
