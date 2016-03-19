@@ -91,6 +91,14 @@ switch ($setup->currentStep) {
         break;
 
     case 2:
+        $settings = new Settings(false);
+
+        // save the mail settings
+        $settings->changeSetting('mail_host', $data['host']);
+        $settings->changeSetting('mail_port', $data['port']);
+        $settings->changeSetting('mail_username', $data['username']);
+        $settings->changeSetting('mail_password', $data['password']);
+
         $config_new['setup_step']++;
         break;
 

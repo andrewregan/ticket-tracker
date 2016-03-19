@@ -4,7 +4,7 @@ class Setup
     public $currentStep = 0;
     public $setupEbabled = false;
 
-    function __construct($reload_config = false)
+    public function __construct($reload_config = false)
     {
         // config.php not loading normally because of a cache issue?
         if ($reload_config) $this->reloadConfig();

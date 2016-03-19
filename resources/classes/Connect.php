@@ -1,7 +1,7 @@
 <?php
 class Connect extends mysqli
 {
-    function __construct()
+    public function __construct()
     {
         global $config;
 
@@ -15,8 +15,13 @@ class Connect extends mysqli
         );
     }
 
-    function simpleUpdate($table, $set_col, $set_val, $find_col, $find_val)
-    {
+    public function simpleUpdate(
+        $table,
+        $set_col,
+        $set_val,
+        $find_col,
+        $find_val
+    ) {
         // strip escape characters to prevent sql injection attacks
         $table = $this->real_escape_string($table);
         $set_col = $this->real_escape_string($set_col);
@@ -26,7 +31,7 @@ class Connect extends mysqli
 
         $query = "UPDATE `$table`" .
             " SET `$set_col` = '$set_val'" .
-            " WHERE `$find_col` = '$find_val';"
+            " WHERE `$find_col` = '$find_val';";
 
         $this->query($query);
     }
