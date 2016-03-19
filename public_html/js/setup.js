@@ -10,7 +10,7 @@ function attachEventHandlers() {
 }
 
 function loadStep() {
-    $.post('../php/script/setup-load-content.php', function(response) {
+    $.post('../php/setup-load-content.php', function(response) {
         var response = jQuery.parseJSON(response);
 
         if (response.success) {
@@ -45,7 +45,7 @@ function nextStep() {
     // convert data to json string
     data = JSON.stringify(data);
 
-    $.post('../php/script/setup-run-step.php', {
+    $.post('../php/setup-run-step.php', {
         data: data,
         step: step
     }, function(response) {
@@ -66,7 +66,7 @@ function nextStep() {
 }
 
 function resetSetup() {
-    $.post('../php/script/setup-reset.php', function(response) {
+    $.post('../php/setup-reset.php', function(response) {
         var response = jQuery.parseJSON(response);
 
         if (response.success) {

@@ -94,7 +94,7 @@ $step[] = <<<HTML
   <div class="form-group">
     <label class="col-sm-3 control-label" for="inputHost">Host:</label>
     <div class="col-sm-9">
-      <input class="form-control" id="inputHost" type="text" placeholder="imap.google.com">
+      <input class="form-control" id="inputHost" type="text" placeholder="imap.gmail.com">
     </div>
   </div>
   <div class="form-group">
