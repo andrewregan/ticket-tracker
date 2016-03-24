@@ -25,7 +25,10 @@
             <h4 class="modal-title" id="cancelTicketModal">Cancel Ticket</h4>
           </div>
           <div class="modal-body">
-            ...
+            <div class="form-group">
+              <label for="cancelEmail">Email address</label>
+              <input class="form-control" id="cancelEmail" type="email" placeholder="address@mail.com">
+            </div>
           </div>
           <div class="modal-footer">
             <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
@@ -44,7 +47,51 @@
             <h4 class="modal-title" id="reserveTicketModal">Reserve Ticket</h4>
           </div>
           <div class="modal-body">
-            ...
+            <div class="form-group">
+              <label>Name</label>
+              <div class="row">
+                <div class="col-sm-6">
+                  <input class="form-control" id="reserveFirstName" type="text" placeholder="First Name">
+                </div>
+                <div class="col-sm-6">
+                  <input class="form-control" id="reserveLastName" type="text" placeholder="Last Name">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="reservePhone">Phone number</label>
+              <input class="form-control" id="reservePhone" type="tel">
+            </div>
+            <div class="form-group">
+              <label for="cancelEmail">Email address</label>
+              <input class="form-control" id="cancelEmail" type="email" placeholder="address@mail.com">
+            </div>
+            <hr>
+            <div class="form-group">
+              <label for="reserveShow">Show</label>
+              <select class="form-control" id="reserveShow">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="reserveSeats">Seats</label>
+              <div class="row">
+                <div class="col-sm-10">
+                  <input class="form-control" id="reserveSeats" type="number" value="1" min="1" max="12">
+                </div>
+                <div class="col-sm-2">
+                  <input class="form-control" id="reserveSeatsCost" readonly>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="reserveComments">Comments</label>
+              <textarea class="form-control" id="reserveComments" rows="3"></textarea>
+            </div>
           </div>
           <div class="modal-footer">
             <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
