@@ -8,9 +8,9 @@ class Login
     public function __construct($close_session = true)
     {
         // resume session if one exists
-        if (session_status() !== PHP_SESSION_NONE) session_start();
+        if (isset($_COOKIE["PHPSESSID"])) session_start();
 
-        $this->getLoginInfo();
+        $this->loadLoginInfo();
 
         // automatically close session so other scripts can run
         if ($close_session) session_write_close();
@@ -25,7 +25,7 @@ class Login
         if ($account_id === false) return false;
 
         // create a new session and store a cookie
-        if (session_status() === PHP_SESSION_NONE) session_start();
+        if (!isset($_COOKIE["PHPSESSID"])) session_start();
 
         // save the account id in the session info
         $_SESSION['account_id'] = $account_id;
@@ -38,10 +38,27 @@ class Login
         session_destroy();
     }
 
-    public function getLoginInfo()
+    public function loadLoginInfo()
     {
         $this->accountId = (isset($_SESSION['account_id'])) ?
             $_SESSION['account_id'] : 0;
         $this->loggedIn = ($this->accountId > 0);
+    }
+
+    public function requireLoggedIn($logged_in = true, $redirect = false)
+    {
+        if ($this->loggedIn != $logged_in) {
+            // set the response header
+            if ($redirect === true) {
+                header("Location: /");
+            } elseif($redirect === false) {
+                header("HTTP/1.1 500 Internal Server Error");
+            } else {
+                header("Location: /$redirect");
+            }
+
+            // end the connection
+            die();
+        }
     }
 }

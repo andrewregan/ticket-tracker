@@ -1,5 +1,8 @@
 <?php
 include(dirname(__FILE__) . '/../../resources/prepend.php');
+
+$login = new Login();
+$login->requireLoggedIn(false, true);
 ?>
 <!doctype html>
 <html lang="en-us">
