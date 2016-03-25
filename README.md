@@ -1,6 +1,58 @@
-# Ticket Tracker
-Use this website to allow users to reserve tickets automatically.
+## Summary
+Host a site to allow users to reserve tickets for an event.  Collect phone numbers, email, name, and number of tickets from a user.
 
+## Setup
+
+This site is best hosted on a linux-based operating system.  Download a free copy of [Ubuntu](http://www.ubuntu.com/), and host it yourself or use [DigitalOcean](https://m.do.co/c/435dd313bb6a) to host your site.
+
+##### Install Apache, PHP, and MySQL
+``` bash
+sudo apt-get install apache2 php5 php5-mysql mysql-server
+```
+
+##### Install Git and download the site
+``` bash
+sudo apt-get git
+
+cd /var/www
+
+sudo git clone https://github.com/andrewregan/ticket-tracker.git ticket-tracker
+
+sudo chgrp www-data ticket-tracker -R
+```
+
+##### Install this site configuration
+Add a new Apache configuration file `/etc/apache2/sites-available/ticket-tracker.conf`.
+```
+<VirtualHost *:80>
+    ServerName yourserver.com
+    DocumentRoot /var/www/ticket-tracker/public_html
+</VirtualHost>
+```
+
+##### Enable the new configuration
+``` bash
+sudo a2ensite ticket-tracker.conf
+sudo systemctl restart apache2.service
+```
+
+##### Install and run composer
+``` bash
+sudo apt-get install curl php5-cli git
+
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+
+cd /var/www/ticket-tracker/
+
+sudo composer update
+
+sudo chgrp www-data . -R
+```
+
+##### Finish the site setup
+Visit the new website and finish the setup via the web interface.
+
+-----
 ## Style Guide and Coding Conventions
 This project follows the following style and coding guidelines.
 
