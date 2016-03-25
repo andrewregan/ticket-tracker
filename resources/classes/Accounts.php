@@ -71,7 +71,8 @@ class Accounts
         $account_info = $connect->simpleSelect('accounts', 'email', $email);
         $connect->close();
 
-
+        // there must be login info available
+        if ($account_info === []) return false;
 
         // email and password must match
         if ($account_info['email'] != $email) return false;
