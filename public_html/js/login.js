@@ -1,6 +1,23 @@
 $('#loginButton').click(function() {
-    $(this).attr('disabled', true);
+    // do not send empty login information to server
+    if ($('#loginEmail').val() == '' || $('#loginPassword').val() == '') {
+        $.notify({
+            title: '<b>Missing Field</b>',
+            message: 'There are one or more inputs missing.'
+        },{
+            type: 'warning',
+            newest_on_top: true,
+            placement: {
+                from: "top",
+                align: "center"
+            }
+        });
 
+        return false;
+    }
+
+    // disable the login button and send request
+    $(this).attr('disabled', true);
     $.post('../php/login-create.php', {
             email: $('#loginEmail').val(),
             password: $('#loginPassword').val()
