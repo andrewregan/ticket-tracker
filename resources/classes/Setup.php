@@ -1,4 +1,5 @@
 <?php
+
 class Setup
 {
     public $currentStep = 0;

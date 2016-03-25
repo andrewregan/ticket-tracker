@@ -1,4 +1,5 @@
 <?php
+
 class Connect extends mysqli
 {
     public function __construct()
@@ -13,6 +14,29 @@ class Connect extends mysqli
             $config['sql']['database'],
             $config['sql']['port']
         );
+    }
+
+    public function advSelectCount($table, $array)
+    {
+        // strip escape characters to prevent sql injection attacks
+        $table = $this->real_escape_string($table);
+
+        $safe_array = [];
+        foreach ($array as $key => $value) {
+            // strip escape characters to prevent sql injection attacks
+            $key = $this->real_escape_string($key);
+            $value = $this->real_escape_string($value);
+
+            $safe_array[$key] = $value;
+        }
+
+        // combine safe array into query
+        $query = "SELECT `id` FROM `$table` WHERE ('" .
+            implode('\',\'', array_values($safe_array)) . '\') = (`' .
+            implode('`,`', array_keys($safe_array)) . '`);';
+        $this->query($query);
+
+        return ($result->num_rows);
     }
 
     public function simpleInsert($table, $array)
@@ -53,6 +77,21 @@ class Connect extends mysqli
         return (($result->num_rows > 0) ? $result->fetch_assoc() : []);
     }
 
+    public function simpleSelectCount($table, $find_col, $find_val)
+    {
+        // strip escape characters to prevent sql injection attacks
+        $table = $this->real_escape_string($table);
+        $find_col = $this->real_escape_string($find_col);
+        $find_val = $this->real_escape_string($find_val);
+
+        // send the query to the server and get the result
+        $query = "SELECT `id` FROM `$table` WHERE `$find_col` = '$find_val'";
+        $result = $this->query($query);
+
+        // get the row of data
+        return ($result->num_rows);
+    }
+
     public function simpleUpdate(
         $table,
         $set_col,
@@ -74,5 +113,3 @@ class Connect extends mysqli
         $this->query($query);
     }
 }
-
-?>

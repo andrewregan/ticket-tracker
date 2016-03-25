@@ -1,4 +1,5 @@
 <?php
+
 class Accounts
 {
     public function __construct()
@@ -9,7 +10,7 @@ class Accounts
     public function checkEmail($email)
     {
         // check if the email given is valid
-        if (!preg_match('/^([\w\.])+(@)+([\w])+(\.)+([\w])*$/', $email)) {
+        if (!preg_match("/^([\w\.])+(@)+([\w])+(\.)+([\w])*$/", $email)) {
             return false;
         }
 
@@ -62,6 +63,23 @@ class Accounts
             ]
         );
     }
-}
 
-?>
+    public function validateAccount($email, $password)
+    {
+        // get the account information
+        $connect = new Connect();
+        $account_info = $connect->simpleSelect('accounts', 'email', $email);
+        $connect->close();
+
+
+
+        // email and password must match
+        if ($account_info['email'] != $email) return false;
+        if ($account_info['password'] == '') return false;
+        if (!password_verify($password, $account_info['password'])) {
+            return false;
+        }
+
+        return ($account_info['id']);
+    }
+}

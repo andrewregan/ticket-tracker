@@ -1,4 +1,5 @@
 <?php
+
 class Settings
 {
     public function __construct($load_settings = true)
@@ -21,5 +22,3 @@ class Settings
         $connect->close();
     }
 }
-
-?>
