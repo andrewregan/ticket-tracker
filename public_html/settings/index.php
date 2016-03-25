@@ -1,5 +1,5 @@
 <?php
-    include(dirname(__FILE__) . '/../../resources/prepend.php');
+include(dirname(__FILE__) . '/../../resources/prepend.php');
 ?>
 <!doctype html>
 <html lang="en-us">
@@ -11,7 +11,7 @@
 
     <!-- CSS dependencies -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/default.css" rel="stylesheet">
+    <link href="../css/settings.css" rel="stylesheet">
   </head>
   <body>
     <?php include(dirname(__FILE__) . '/../../resources/navbar.php'); ?>
@@ -114,6 +114,6 @@
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/bootstrap-notify.min.js"></script>
-    <script src="../js/login.js"></script>
+    <script src="../js/settings.js"></script>
   </body>
 </html>

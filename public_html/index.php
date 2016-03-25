@@ -1,5 +1,5 @@
 <?php
-    include(dirname(__FILE__) . '/../resources/prepend.php');
+include(dirname(__FILE__) . '/../resources/prepend.php');
 ?>
 <!doctype html>
 <html lang="en-us">
