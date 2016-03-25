@@ -18,10 +18,19 @@
 
     <div class="container" id="content">
       <div class="row">
-        <div class="col-md-offset-3 col-md-6">
+        <div class="col-md-offset-4 col-md-4">
           <div class="panel panel-primary">
             <div class="panel-heading">Log in</div>
             <div class="panel-body">
+              <div class="form-group">
+                <label for="loginEmail">Email address</label>
+                <input class="form-control" id="loginEmail" type="email" placeholder="address@mail.com">
+              </div>
+              <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input class="form-control" id="loginPassword" type="password">
+              </div>
+              <a class="btn btn-primary btn-block" id="loginButton">Login</a>
             </div>
           </div>
         </div>
