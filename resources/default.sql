@@ -87,7 +87,8 @@ INSERT INTO `settings` (`id`, `name`, `value`) VALUES
 (3, 'mail_username', ''),
 (4, 'mail_password', ''),
 (5, 'site_title', 'Ticket Tracker'),
-(6, 'site_theme', '');
+(6, 'site_theme', ''),
+(7, 'site_disable', 'true');
 
 -- --------------------------------------------------------
 
@@ -95,7 +96,7 @@ INSERT INTO `settings` (`id`, `name`, `value`) VALUES
 -- Table structure for table `showings`
 --
 
-CREATE TABLE IF NOT EXISTS `showings` (
+CREATE TABLE IF NOT EXISTS `shows` (
   `id` int(11) NOT NULL,
   `show_date` datetime NOT NULL,
   `seat_total` int(11) NOT NULL,

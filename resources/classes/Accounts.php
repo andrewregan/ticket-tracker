@@ -2,6 +2,8 @@
 
 class Accounts
 {
+    public $table;
+
     public function __construct()
     {
 
@@ -62,6 +64,20 @@ class Accounts
                 'password' => $password
             ]
         );
+    }
+
+    public function loadAccountList()
+    {
+        $connect = new Connect();
+        $this->table = $connect->advSelect(
+            'accounts',
+            [],
+            [
+                'id',
+                'email'
+            ]
+        );
+        $connect->close();
     }
 
     public function validateAccount($email, $password)

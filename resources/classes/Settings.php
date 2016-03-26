@@ -21,4 +21,18 @@ class Settings
 
         $connect->close();
     }
+
+    public function getSetting($name)
+    {
+        $connect = new Connect();
+        $row = $connect->simpleSelect(
+            'settings',
+            'name',
+            $name,
+            'value'
+        );
+        $connect->close();
+
+        return $row['value'];
+    }
 }

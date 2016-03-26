@@ -16,11 +16,57 @@ class Connect extends mysqli
         );
     }
 
-    public function advSelectCount($table, $array)
+    public function advSelect($table, $conditions = [], $select = [])
     {
         // strip escape characters to prevent sql injection attacks
         $table = $this->real_escape_string($table);
+        $conditions = $this->escapeArray($conditions);
 
+        // check if there are any elements that need to be selected
+        if ($select !== []) {
+            $select = '`' . implode('`,`', array_values($select)) . '`';
+        } else {
+            $select = "*";
+        }
+
+        // check if there are any conditions that need to be met
+        if ($conditions !== []) {
+            $conditions = "WHERE ('" .
+                implode('\',\'', array_values($conditions)) . '\') = (`' .
+                implode('`,`', array_keys($conditions)) . '`)';
+        } else {
+            $conditions = "";
+        }
+
+        $query = "SELECT $select FROM `$table` $conditions";
+        $result = $this->query($query);
+
+        // create an array of values
+        $table = [];
+        while ($row = $result->fetch_assoc()) {
+            $table[] = $row;
+        }
+
+        return $table;
+    }
+
+    public function advSelectCount($table, $conditions = [])
+    {
+        // strip escape characters to prevent sql injection attacks
+        $table = $this->real_escape_string($table);
+        $conditions = $this->escapeArray($conditions);
+
+        // combine safe array into query
+        $query = "SELECT `id` FROM `$table` WHERE ('" .
+            implode('\',\'', array_values($conditions)) . '\') = (`' .
+            implode('`,`', array_keys($conditions)) . '`);';
+        $result = $this->query($query);
+
+        return $result->num_rows;
+    }
+
+    public function escapeArray($array)
+    {
         $safe_array = [];
         foreach ($array as $key => $value) {
             // strip escape characters to prevent sql injection attacks
@@ -30,32 +76,18 @@ class Connect extends mysqli
             $safe_array[$key] = $value;
         }
 
-        // combine safe array into query
-        $query = "SELECT `id` FROM `$table` WHERE ('" .
-            implode('\',\'', array_values($safe_array)) . '\') = (`' .
-            implode('`,`', array_keys($safe_array)) . '`);';
-        $this->query($query);
-
-        return ($result->num_rows);
+        return $safe_array;
     }
 
     public function simpleInsert($table, $array)
     {
         // strip escape characters to prevent sql injection attacks
         $table = $this->real_escape_string($table);
-
-        $safe_array = [];
-        foreach ($array as $key => $value) {
-            // strip escape characters to prevent sql injection attacks
-            $key = $this->real_escape_string($key);
-            $value = $this->real_escape_string($value);
-
-            $safe_array[$key] = $value;
-        }
+        $array = $this->escapeArray($array);
 
         $query = "INSERT INTO `$table` (`" .
-            implode('`,`', array_keys($safe_array)) . '`) VALUES (\'' .
-            implode('\',\'', array_values($safe_array)) . '\');';
+            implode('`,`', array_keys($array)) . '`) VALUES (\'' .
+            implode('\',\'', array_values($array)) . '\');';
 
         $this->query($query);
     }
