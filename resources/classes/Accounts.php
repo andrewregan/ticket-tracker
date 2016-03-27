@@ -66,6 +66,22 @@ class Accounts
         );
     }
 
+    public function getAccountInfo($id)
+    {
+        // get the account information
+        $connect = new Connect();
+        $account_info = $connect->simpleSelect('accounts', 'id', $id);
+        $connect->close();
+
+        // there must be login info available
+        if ($account_info === []) return false;
+
+        // remove password to avoid leak
+        $account_info['password'] = '';
+
+        return $account_info;
+    }
+
     public function loadAccountList()
     {
         $connect = new Connect();
@@ -92,9 +108,13 @@ class Accounts
 
         // email and password must match
         if ($account_info['email'] != $email) return false;
-        if ($account_info['password'] == '') return false;
-        if (!password_verify($password, $account_info['password'])) {
-            return false;
+
+        // verify password if set
+        if ($password === false) {
+            if ($account_info['password'] == '') return false;
+            if (!password_verify($password, $account_info['password'])) {
+                return false;
+            }
         }
 
         return ($account_info['id']);

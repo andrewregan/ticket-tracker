@@ -36,6 +36,9 @@ $('#loginButton').click(function() {
             		align: "center"
             	}
             });
+            setTimeout(function() {
+                window.location.reload(true);
+            }, 1500);
         } else {
             if (response.error == 'too_many_attempts') {
                 $.notify({

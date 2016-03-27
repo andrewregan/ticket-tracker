@@ -3,6 +3,7 @@
 class Login
 {
     public $accountId;
+    public $accountInfo;
     public $loggedId;
 
     public function __construct($close_session = true)
@@ -40,9 +41,20 @@ class Login
 
     public function loadLoginInfo()
     {
+        // remember the account id from session
         $this->accountId = (isset($_SESSION['account_id'])) ?
             $_SESSION['account_id'] : 0;
-        $this->loggedIn = ($this->accountId > 0);
+
+        // retrieve account information
+        $accounts = new Accounts();
+        $this->accountInfo = $accounts->getAccountInfo($this->accountId);
+
+        // check if user should still be logged in
+        if ($this->accountId > 0 && $this->accountInfo !== false) {
+            $this->loggedIn = true;
+        } else {
+            $this->loggedIn = false;
+        }
     }
 
     public function requireLoggedIn($logged_in = true, $redirect = false)

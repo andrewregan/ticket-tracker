@@ -117,6 +117,7 @@ $login->requireLoggedIn(true, true);
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/bootstrap-notify.min.js"></script>
+    <script src="../js/default.js"></script>
     <script src="../js/settings.js"></script>
   </body>
 </html>

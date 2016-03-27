@@ -1,5 +1,7 @@
 <?php
 include(dirname(__FILE__) . '/../resources/prepend.php');
+
+$login = new Login();
 ?>
 <!doctype html>
 <html lang="en-us">
