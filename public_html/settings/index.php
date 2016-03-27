@@ -32,7 +32,7 @@ $login->requireLoggedIn(true, true);
               <div class="form-group">
                 <label for="settingsTheme">Site Theme</label>
                 <select class="form-control" id="settingsTheme">
-                  <option>Default</option>
+                  <option value="bootstrap">Default</option>
                 </select>
               </div>
               <div class="form-group">
@@ -48,7 +48,7 @@ $login->requireLoggedIn(true, true);
               </div>
               <div class="checkbox">
                 <label>
-                  <input id="sittingsDisableSite" type="checkbox"> Disable Site
+                  <input id="settingsDisableSite" type="checkbox"> Disable Site
                 </label>
               </div>
               <a class="btn btn-primary pull-right" id="settingsSave">Save Changes</a>
