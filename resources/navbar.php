@@ -8,7 +8,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Site Title</a>
+      <a class="navbar-brand" href="/">
+        <?php echo $settings->getSetting('site_title'); ?>
+      </a>
     </div>
 
     <!-- Navbar content -->

@@ -110,7 +110,7 @@ class Accounts
         if ($account_info['email'] != $email) return false;
 
         // verify password if set
-        if ($password === false) {
+        if ($password !== false) {
             if ($account_info['password'] == '') return false;
             if (!password_verify($password, $account_info['password'])) {
                 return false;

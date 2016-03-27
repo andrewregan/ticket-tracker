@@ -3,6 +3,8 @@ include(dirname(__FILE__) . '/../../resources/prepend.php');
 
 $login = new Login();
 $login->requireLoggedIn(true, true);
+
+$settings = new Settings();
 ?>
 <!doctype html>
 <html lang="en-us">
@@ -70,9 +72,9 @@ $login->requireLoggedIn(true, true);
                 </thead>
                 <tbody id="showTable">
                   <tr id="showTemplate">
-                    <td>Example Show - Tuesday</td>
-                    <td>10/256</td>
-                    <td>$15</td>
+                    <td><!--name--></td>
+                    <td><!--seats--></td>
+                    <td><!--price--></td>
                     <td>
                       <div class="pull-right">
                         <a class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>

@@ -13,6 +13,17 @@ class Shows
     {
         $connect = new Connect();
         $this->table = $connect->advSelect('shows');
+
+        // loop through each show and add the number of seats sold
+        foreach ($this->table as $key => $value) {
+            $seat_sales = $connect->simpleSelectCount(
+                'orders',
+                'show_id',
+                $value['id']
+            );
+            $this->table[$key]['seat_sales'] = $seat_sales;
+        }
+
         $connect->close();
     }
 }

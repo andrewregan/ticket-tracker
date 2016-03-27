@@ -24,7 +24,14 @@ function loadSettings() {
             for (i in response.shows) {
                 code += template
                     .replace('<!--id-->', '')
-                    .replace('<!--data-id-->', i);
+                    .replace('<!--data-id-->', response.shows[i].id)
+                    .replace('<!--name-->', response.shows[i].show_title)
+                    .replace(
+                        '<!--seats-->',
+                        response.shows[i].seat_sales + ' / ' +
+                        response.shows[i].seat_total
+                    )
+                    .replace('<!--price-->', response.shows[i].seat_cost);
             }
             $('#showTable').html(code);
 
@@ -34,10 +41,10 @@ function loadSettings() {
             var code = template
                 .replace('<!--id-->', 'accountTemplate')
                 .replace('<!--data-id-->', '0');
-            for (i in response.shows) {
+            for (i in response.accounts) {
                 code += template
                     .replace('<!--id-->', '')
-                    .replace('<!--data-id-->', i)
+                    .replace('<!--data-id-->', response.accounts[i].id)
                     .replace('<!--email-->', response.accounts[i].email);
             }
             $('#accountTable').html(code);

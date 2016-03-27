@@ -2,6 +2,7 @@
 include(dirname(__FILE__) . '/../resources/prepend.php');
 
 $login = new Login();
+$settings = new Settings();
 ?>
 <!doctype html>
 <html lang="en-us">

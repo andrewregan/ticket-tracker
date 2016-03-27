@@ -3,6 +3,8 @@ include(dirname(__FILE__) . '/../../resources/prepend.php');
 
 $login = new Login();
 $login->requireLoggedIn(false, true);
+
+$settings = new Settings();
 ?>
 <!doctype html>
 <html lang="en-us">
