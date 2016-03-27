@@ -68,8 +68,8 @@ $login->requireLoggedIn(true, true);
                     <th></th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
+                <tbody id="showTable">
+                  <tr id="showTemplate">
                     <td>Example Show - Tuesday</td>
                     <td>10/256</td>
                     <td>$15</td>
@@ -95,9 +95,9 @@ $login->requireLoggedIn(true, true);
                     <th></th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>address@example.com</td>
+                <tbody id="accountTable">
+                  <tr id="accountTemplate">
+                    <td><!--email--></td>
                     <td>
                       <div class="pull-right">
                         <a class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>

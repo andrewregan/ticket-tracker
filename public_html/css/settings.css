@@ -1,3 +1,11 @@
 .panel {
   margin-bottom: 20px;
 }
+
+#showTemplate {
+  display: none;
+}
+
+#accountTemplate {
+  display: none;
+}
