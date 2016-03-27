@@ -16,14 +16,21 @@ function loadSettings() {
             );
 
             // generate the shows panel
-            var template = '<tr id="<!--id-->" data-id="<!--data-id-->">' +
+            var template = '<tr class="<!--class-->" ' +
+                'data-id="<!--data-id-->">' +
                 $('#showTemplate').html() + '</tr>';
-            var code = template
-                .replace('<!--id-->', 'showTemplate')
-                .replace('<!--data-id-->', '0');
+            var code = '<tr id="showTemplate">' +
+                $('#showTemplate').html() + '</tr>';
             for (i in response.shows) {
+                if (response.shows[i].enabled == '0') {
+                    hidden = 'danger';
+                } else {
+                    hidden = '';
+                }
+
                 code += template
                     .replace('<!--id-->', '')
+                    .replace('<!--class-->', hidden)
                     .replace('<!--data-id-->', response.shows[i].id)
                     .replace('<!--name-->', response.shows[i].show_title)
                     .replace(
