@@ -87,6 +87,33 @@ $(document).ready(function() {
             });
         }
     });
+
+    $('#deleteShowConfirm').click(function() {
+        var id = $(this).data('id');
+
+        $.post('../php/show-delete.php', {
+            id: id
+        }, function(response) {
+            var response = jQuery.parseJSON(response);
+
+            if (response.success) {
+                $('#deleteShowModal').modal('hide');
+                loadSettings();
+            } else {
+                $.notify({
+                    title: '<b>Delete Failed</b>',
+                  message: 'An unknown error occured.'
+                },{
+                  type: 'danger',
+                    newest_on_top: true,
+                    placement: {
+                    from: "top",
+                    align: "center"
+                  }
+                });
+            }
+        });
+    });
 });
 
 function loadSettings() {
@@ -161,6 +188,19 @@ function loadSettings() {
                 $('#editShowPrice').val(shows[i].seat_cost);
                 $('#editShowEnable').prop('checked', shows[i].enabled == '1');
                 $('#editShowSave').data('id', shows[i].id);
+            });
+
+            $('.show-delete-btn').click(function() {
+                var i = $(this).parents('tr').data('i');
+
+                $('#deleteShowModal')
+                    .modal('show')
+                    .focus();
+
+                $('#deleteShowName').html(shows[i].show_title);
+                $('#deleteShowSeats').html(shows[i].seat_sales  + ' / ' +
+                    response.shows[i].seat_total);
+                $('#deleteShowConfirm').data('id', shows[i].id);
             });
         } else {
             $.notify({

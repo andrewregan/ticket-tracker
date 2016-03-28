@@ -102,6 +102,19 @@ class Connect extends mysqli
         return $safe_array;
     }
 
+    public function simpleDelete($table, $find_col, $find_val)
+    {
+        // strip escape characters to prevent sql injection attacks
+        $table = $this->real_escape_string($table);
+        $find_col = $this->real_escape_string($find_col);
+        $find_val = $this->real_escape_string($find_val);
+
+        $query = "DELETE FROM `$table` WHERE `$find_col` = '$find_val';";
+        $result = $this->query($query);
+
+        return $result;
+    }
+
     public function simpleInsert($table, $array)
     {
         // strip escape characters to prevent sql injection attacks

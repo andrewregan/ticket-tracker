@@ -29,6 +29,22 @@ class Shows
         $connect->close();
     }
 
+    public function deleteShow($id)
+    {
+        $connect = new Connect();
+        $connect->simpleDelete(
+            'shows',
+            'id',
+            $id
+        );
+        $connect->simpleDelete(
+            'orders',
+            'show_id',
+            $id
+        );
+        $connect->close();
+    }
+
     public function editShow(
         $id,
         $show_title,
@@ -36,7 +52,6 @@ class Shows
         $seat_cost,
         $enabled
     ) {
-        // add the new row to the database
         $connect = new Connect();
         $connect->advUpdate(
             'shows',

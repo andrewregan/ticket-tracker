@@ -62,6 +62,26 @@ $settings = new Settings();
       </div>
     </div>
 
+    <!-- Delete show  -->
+    <div class="modal fade" id="deleteShowModal" role="dialog" aria-labelledby="deleteShowModal" tabindex="-1">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal" type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Delete Show</h4>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure that you would like to delete &quot;<span id="deleteShowName"></span>&quot;?</p>
+            <p><span id="deleteShowSeats"></span> tickets have been registered.</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+            <button class="btn btn-danger" id="deleteShowConfirm" type="button">Delete Show</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container" id="content">
       <div class="row">
         <div class="col-md-6">
