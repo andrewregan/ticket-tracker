@@ -3,6 +3,90 @@ var accounts;
 
 $(document).ready(function() {
     loadSettings();
+
+    $('#createShowButton').click(function() {
+        $('#editShowModal')
+            .modal('show')
+            .focus()
+            .find('.modal-title')
+            .html('Create Show');
+        $('#editShowName').val('');
+        $('#editShowSeats').val(0);
+        $('#editShowPrice').val(10);
+        $('#editShowEnable').prop('checked', false);
+        $('#editShowSave').data('id', 0);
+    });
+
+    $('#editShowSave').click(function() {
+        var id = $(this).data('id');
+
+        if (id == '0') {
+            if ($('#editShowEnable').prop('checked')) {
+                var enabled = 'true';
+            } else {
+                var enabled = 'false';
+            }
+
+            $.post('../php/show-create.php', {
+                show_title: $('#editShowName').val(),
+                seat_total: $('#editShowSeats').val(),
+                seat_cost: $('#editShowPrice').val(),
+                enabled: enabled
+            }, function(response) {
+                var response = jQuery.parseJSON(response);
+
+                if (response.success) {
+                    $('#editShowModal').modal('hide');
+                    loadSettings();
+                } else {
+                    $.notify({
+                        title: '<b>Save Failed</b>',
+                      message: 'An unknown error occured.'
+                    },{
+                      type: 'danger',
+                        newest_on_top: true,
+                        placement: {
+                        from: "top",
+                        align: "center"
+                      }
+                    });
+                }
+            });
+        } else {
+            if ($('#editShowEnable').prop('checked')) {
+                var enabled = 'true';
+            } else {
+                var enabled = 'false';
+            }
+
+            $.post('../php/show-edit.php', {
+                id: id,
+                show_title: $('#editShowName').val(),
+                seat_total: $('#editShowSeats').val(),
+                seat_cost: $('#editShowPrice').val(),
+                enabled: enabled
+            }, function(response) {
+                var response = jQuery.parseJSON(response);
+
+                if (response.success) {
+                    $('#editShowModal').modal('hide');
+                    loadSettings();
+                } else {
+                    $.notify({
+                        title: '<b>Save Failed</b>',
+                      message: 'An unknown error occured.'
+                    },{
+                      type: 'danger',
+                        newest_on_top: true,
+                        placement: {
+                        from: "top",
+                        align: "center"
+                      }
+                    });
+                }
+            });
+        }
+    });
 });
 
 function loadSettings() {
@@ -67,9 +151,7 @@ function loadSettings() {
                 var i = $(this).parents('tr').data('i');
 
                 $('#editShowModal')
-                    .modal({
-                        show: true
-                    })
+                    .modal('show')
                     .focus()
                     .find('.modal-title')
                     .html('Edit Show');
@@ -79,66 +161,6 @@ function loadSettings() {
                 $('#editShowPrice').val(shows[i].seat_cost);
                 $('#editShowEnable').prop('checked', shows[i].enabled == '1');
                 $('#editShowSave').data('id', shows[i].id);
-            });
-
-            $('#createShowButton').click(function() {
-                $('#editShowModal')
-                    .modal({
-                        show: true
-                    })
-                    .focus()
-                    .find('.modal-title')
-                    .html('Create Show');
-                $('#editShowName').val('');
-                $('#editShowSeats').val(0);
-                $('#editShowPrice').val(10);
-                $('#editShowEnable').prop('checked', false);
-                $('#editShowSave').data('id', 0);
-            });
-
-            $('#editShowSave').click(function() {
-                var id = $(this).data('id');
-
-                if (id == '0') {
-                    if ($('#editShowEnable').prop('checked')) {
-                        var enabled = 'true';
-                    } else {
-                        var enabled = 'false';
-                    }
-
-                    $.post('../php/show-create.php', {
-                        show_title: $('#editShowName').val(),
-                        seat_total: $('#editShowSeats').val(),
-                        seat_cost: $('#editShowPrice').val(),
-                        enabled: enabled
-                    }, function(response) {
-                        var response = jQuery.parseJSON(response);
-
-                        if (response.success) {
-                            $('#editShowModal').modal({show: false});
-                        }
-                    });
-                } else {
-                    if ($('#editShowEnable').prop('checked')) {
-                        var enabled = 'true';
-                    } else {
-                        var enabled = 'false';
-                    }
-
-                    $.post('../php/show-edit.php', {
-                        id: id,
-                        show_title: $('#editShowName').val(),
-                        seat_total: $('#editShowSeats').val(),
-                        seat_cost: $('#editShowPrice').val(),
-                        enabled: enabled
-                    }, function(response) {
-                        var response = jQuery.parseJSON(response);
-
-                        if (response.success) {
-                            $('#editShowModal').modal({show: false});
-                        }
-                    });
-                }
             });
         } else {
             $.notify({

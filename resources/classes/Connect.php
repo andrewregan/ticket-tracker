@@ -83,7 +83,6 @@ class Connect extends mysqli
             implode(',', array_values($set)) . " WHERE (`" .
             implode('`,`', array_keys($conditions)) . "`) = ('" .
             implode('\',\'', array_values($conditions)) . "');";
-        echo($query);
         $result = $this->query($query);
 
         return $result;

@@ -11,7 +11,7 @@ class Shows
 
     public function createShow(
         $show_title,
-        $show_seats,
+        $seat_total,
         $seat_cost,
         $enabled
     ) {
@@ -21,8 +21,8 @@ class Shows
             'shows',
             [
                 'show_title' => $show_title,
-                'show_seats' => $show_seats,
-                'show_cost' => $seat_cost,
+                'seat_total' => $seat_total,
+                'seat_cost' => $seat_cost,
                 'enabled' => $enabled
             ]
         );
