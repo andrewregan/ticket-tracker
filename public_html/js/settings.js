@@ -88,6 +88,17 @@ $(document).ready(function() {
         }
     });
 
+    $('#createAccountButton').click(function() {
+        $('#editAccountModal')
+            .modal('show')
+            .focus()
+            .find('.modal-title')
+            .html('Create Account');
+        $('#editAccountEmail').val('');
+        $('#editAccountPassword').val('');
+        $('#editAccountSave').data('id', 0);
+    });
+
     $('#deleteShowConfirm').click(function() {
         var id = $(this).data('id');
 
@@ -98,6 +109,88 @@ $(document).ready(function() {
 
             if (response.success) {
                 $('#deleteShowModal').modal('hide');
+                loadSettings();
+            } else {
+                $.notify({
+                    title: '<b>Delete Failed</b>',
+                  message: 'An unknown error occured.'
+                },{
+                  type: 'danger',
+                    newest_on_top: true,
+                    placement: {
+                    from: "top",
+                    align: "center"
+                  }
+                });
+            }
+        });
+    });
+
+    $('#editAccountSave').click(function() {
+        var id = $(this).data('id');
+
+        if (id == '0') {
+            $.post('../php/account-create.php', {
+                email: $('#editAccountEmail').val(),
+                password: $('#editAccountPassword').val()
+            }, function(response) {
+                var response = jQuery.parseJSON(response);
+
+                if (response.success) {
+                    $('#editAccountModal').modal('hide');
+                    loadSettings();
+                } else {
+                    $.notify({
+                        title: '<b>Save Failed</b>',
+                      message: 'An unknown error occured.'
+                    },{
+                      type: 'danger',
+                        newest_on_top: true,
+                        placement: {
+                        from: "top",
+                        align: "center"
+                      }
+                    });
+                }
+            });
+        } else {
+            $.post('../php/account-edit.php', {
+                id: id,
+                email: $('#editAccountEmail').val(),
+                password: $('#editAccountPassword').val()
+            }, function(response) {
+                var response = jQuery.parseJSON(response);
+
+                if (response.success) {
+                    $('#editAccountModal').modal('hide');
+                    loadSettings();
+                } else {
+                    $.notify({
+                        title: '<b>Save Failed</b>',
+                      message: 'An unknown error occured.'
+                    },{
+                      type: 'danger',
+                        newest_on_top: true,
+                        placement: {
+                        from: "top",
+                        align: "center"
+                      }
+                    });
+                }
+            });
+        }
+    });
+
+    $('#deleteAccountConfirm').click(function() {
+        var id = $(this).data('id');
+
+        $.post('../php/account-delete.php', {
+            id: id
+        }, function(response) {
+            var response = jQuery.parseJSON(response);
+
+            if (response.success) {
+                $('#deleteAccountModal').modal('hide');
                 loadSettings();
             } else {
                 $.notify({
@@ -201,6 +294,31 @@ function loadSettings() {
                 $('#deleteShowSeats').html(shows[i].seat_sales  + ' / ' +
                     response.shows[i].seat_total);
                 $('#deleteShowConfirm').data('id', shows[i].id);
+            });
+
+            $('.account-edit-btn').click(function() {
+                var i = $(this).parents('tr').data('i');
+
+                $('#editAccountModal')
+                    .modal('show')
+                    .focus()
+                    .find('.modal-title')
+                    .html('Edit Account');
+
+                $('#editAccountEmail').val(accounts[i].email);
+                $('#editAccountPassword').val('');
+                $('#editAccountSave').data('id', accounts[i].id);
+            });
+
+            $('.account-delete-btn').click(function() {
+                var i = $(this).parents('tr').data('i');
+
+                $('#deleteAccountModal')
+                    .modal('show')
+                    .focus();
+
+                $('#deleteAccountEmail').html(accounts[i].email);
+                $('#deleteAccountConfirm').data('id', accounts[i].id);
             });
         } else {
             $.notify({

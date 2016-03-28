@@ -82,6 +82,51 @@ $settings = new Settings();
       </div>
     </div>
 
+    <!-- Edit account  -->
+    <div class="modal fade" id="editAccountModal" role="dialog" aria-labelledby="editAccountModal" tabindex="-1">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal" type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Edit Account</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="editAccountEmail">Email</label>
+              <input class="form-control" id="editAccountEmail" type="email" placeholder="address@example.com">
+            </div>
+            <div class="form-group">
+              <label for="editAccountPassword">Password</label>
+              <input class="form-control" id="editAccountPassword" type="password" placeholder="(unchanged)">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+            <button class="btn btn-primary" id="editAccountSave" type="button">Save Changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete account  -->
+    <div class="modal fade" id="deleteAccountModal" role="dialog" aria-labelledby="deleteAccountModal" tabindex="-1">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal" type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Delete Account</h4>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure that you would like to delete &quot;<span id="deleteAccountEmail"></span>&quot;?</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+            <button class="btn btn-danger" id="deleteAccountConfirm" type="button">Delete Account</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container" id="content">
       <div class="row">
         <div class="col-md-6">
@@ -170,7 +215,7 @@ $settings = new Settings();
                   </tr>
                 </tbody>
               </table>
-              <a class="btn btn-default pull-right" data-target="#createAccountModal" data-toggle="modal">Create Account</a>
+              <a class="btn btn-default pull-right" id="createAccountButton">Create Account</a>
             </div>
           </div>
         </div>

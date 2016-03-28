@@ -8,7 +8,7 @@ $login->requireLoggedIn();
 // get account email and password
 $email = (isset($_POST['email'])) ? $_POST['email'] : '';
 $password = (isset($_POST['password'])) ? $_POST['password'] : '';
-$id = (isset($_POST['id'])) ? int($_POST['id']) : 0;
+$id = (isset($_POST['id'])) ? intval($_POST['id']) : 0;
 
 // verify if the information is valid
 $accounts = new Accounts();
@@ -19,7 +19,7 @@ $json['valid_id'] = ($account_info !== false);
 
 // verify that the new email is valid
 if ($email !== '' && $email !== $account_info['email']) {
-    $json['valid_email'] = $this->checkEmail($email);
+    $json['valid_email'] = $accounts->checkEmail($email);
 } else {
     $json['valid_email'] = true;
 }
@@ -34,4 +34,5 @@ if ($password !== '') {
 require_valid($json);
 
 $accounts->editAccount($id, $email, $password);
+$json['success'] = true;
 return_json($json);

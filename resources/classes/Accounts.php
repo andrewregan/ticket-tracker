@@ -70,6 +70,17 @@ class Accounts
         return true;
     }
 
+    public function deleteAccount($id)
+    {
+        $connect = new Connect();
+        $connect->simpleDelete(
+            'accounts',
+            'id',
+            $id
+        );
+        $connect->close();
+    }
+
     public function editAccount($id, $email, $password)
     {
         $connect = new Connect();
