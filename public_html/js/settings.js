@@ -77,7 +77,7 @@ function loadSettings() {
                 $('#editShowName').val(shows[i].show_title);
                 $('#editShowSeats').val(shows[i].seat_total);
                 $('#editShowPrice').val(shows[i].seat_cost);
-                $('#editShowEnabled').prop('checked', shows[i].enabled == '1');
+                $('#editShowEnable').prop('checked', shows[i].enabled == '1');
                 $('#editShowSave').data('id', shows[i].id);
             });
 
@@ -92,14 +92,25 @@ function loadSettings() {
                 $('#editShowName').val('');
                 $('#editShowSeats').val(0);
                 $('#editShowPrice').val(10);
-                $('#editShowEnabled').prop('checked', false);
+                $('#editShowEnable').prop('checked', false);
                 $('#editShowSave').data('id', 0);
             });
 
             $('#editShowSave').click(function() {
-                if ($(this).data('id') == '0') {
-                    $.post('../php/changeme.php', {
+                var id = $(this).data('id');
 
+                if (id == '0') {
+                    if ($('#editShowEnable').prop('checked')) {
+                        var enabled = 'true';
+                    } else {
+                        var enabled = 'false';
+                    }
+
+                    $.post('../php/show-create.php', {
+                        show_title: $('#editShowName').val(),
+                        seat_total: $('#editShowSeats').val(),
+                        seat_cost: $('#editShowPrice').val(),
+                        enabled: enabled
                     }, function(response) {
                         var response = jQuery.parseJSON(response);
 
@@ -108,7 +119,25 @@ function loadSettings() {
                         }
                     });
                 } else {
+                    if ($('#editShowEnable').prop('checked')) {
+                        var enabled = 'true';
+                    } else {
+                        var enabled = 'false';
+                    }
 
+                    $.post('../php/show-edit.php', {
+                        id: id,
+                        show_title: $('#editShowName').val(),
+                        seat_total: $('#editShowSeats').val(),
+                        seat_cost: $('#editShowPrice').val(),
+                        enabled: enabled
+                    }, function(response) {
+                        var response = jQuery.parseJSON(response);
+
+                        if (response.success) {
+                            $('#editShowModal').modal({show: false});
+                        }
+                    });
                 }
             });
         } else {

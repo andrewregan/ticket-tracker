@@ -65,6 +65,30 @@ class Connect extends mysqli
         return $result->num_rows;
     }
 
+    public function advUpdate($table, $array = [], $conditions = [])
+    {
+        // strip escape characters to prevent sql injection attacks
+        $table = $this->real_escape_string($table);
+        $conditions = $this->escapeArray($conditions);
+        $array = $this->escapeArray($array);
+
+        // loop through each value to be set
+        $set = [];
+        foreach ($array as $key => $value) {
+            $set[] = "`$key` = '$value'";
+        }
+
+        // combine safe array into query
+        $query = "UPDATE `$table` SET " .
+            implode(',', array_values($set)) . " WHERE (`" .
+            implode('`,`', array_keys($conditions)) . "`) = ('" .
+            implode('\',\'', array_values($conditions)) . "');";
+        echo($query);
+        $result = $this->query($query);
+
+        return $result;
+    }
+
     public function escapeArray($array)
     {
         $safe_array = [];

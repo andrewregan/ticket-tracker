@@ -9,6 +9,50 @@ class Shows
         if ($load_table) $this->loadShowList();
     }
 
+    public function createShow(
+        $show_title,
+        $show_seats,
+        $seat_cost,
+        $enabled
+    ) {
+        // add the new row to the database
+        $connect = new Connect();
+        $connect->simpleInsert(
+            'shows',
+            [
+                'show_title' => $show_title,
+                'show_seats' => $show_seats,
+                'show_cost' => $seat_cost,
+                'enabled' => $enabled
+            ]
+        );
+        $connect->close();
+    }
+
+    public function editShow(
+        $id,
+        $show_title,
+        $seat_total,
+        $seat_cost,
+        $enabled
+    ) {
+        // add the new row to the database
+        $connect = new Connect();
+        $connect->advUpdate(
+            'shows',
+            [
+                'show_title' => $show_title,
+                'seat_total' => $seat_total,
+                'seat_cost' => $seat_cost,
+                'enabled' => $enabled
+            ],
+            [
+                'id' => $id
+            ]
+        );
+        $connect->close();
+    }
+
     public function loadShowList()
     {
         $connect = new Connect();
