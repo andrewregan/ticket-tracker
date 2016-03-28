@@ -21,6 +21,47 @@ $settings = new Settings();
   <body>
     <?php include(dirname(__FILE__) . '/../../resources/navbar.php'); ?>
 
+    <!-- Edit show  -->
+    <div class="modal fade" id="editShowModal" role="dialog" aria-labelledby="editShowModal" tabindex="-1">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal" type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Edit Show</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="editShowName">Show Name</label>
+              <input class="form-control" id="editShowName" type="text" placeholder="Wicked - Friday, March 4">
+            </div>
+            <div class="form-group">
+              <label for="editShowSeats">Seats</label>
+              <input class="form-control" id="editShowSeats" type="number" value="0" min="0" max="20000">
+            </div>
+            <div class="form-group">
+              <label for="editShowPrice">Ticket Price</label>
+              <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input class="form-control" id="editShowPrice" type="number" value="5" min="0" max="2000">
+                <span class="input-group-addon">.00</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input id="editShowEnable" type="checkbox"> Allow Reservations
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+            <button class="btn btn-primary" id="editShowSave" type="button">Save Changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container" id="content">
       <div class="row">
         <div class="col-md-6">
@@ -77,14 +118,14 @@ $settings = new Settings();
                     <td><!--price--></td>
                     <td>
                       <div class="pull-right">
-                        <a class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                        <a class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                        <a class="btn btn-sm btn-primary show-edit-btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                        <a class="btn btn-sm btn-danger show-delete-btn"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                       </div>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <a class="btn btn-default pull-right" data-target="#createShowModal" data-toggle="modal">Create Show</a>
+              <a class="btn btn-default pull-right" id="createShowButton">Create Show</a>
             </div>
           </div>
           <div class="panel panel-info">
@@ -102,8 +143,8 @@ $settings = new Settings();
                     <td><!--email--></td>
                     <td>
                       <div class="pull-right">
-                        <a class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                        <a class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                        <a class="btn btn-sm btn-primary account-edit-btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                        <a class="btn btn-sm btn-danger account-delete-btn"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                       </div>
                     </td>
                   </tr>

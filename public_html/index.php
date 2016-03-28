@@ -25,7 +25,7 @@ $settings = new Settings();
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" data-dismiss="modal" type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="cancelTicketModal">Cancel Ticket</h4>
+            <h4 class="modal-title">Cancel Ticket</h4>
           </div>
           <div class="modal-body">
             <div class="form-group">
@@ -47,7 +47,7 @@ $settings = new Settings();
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" data-dismiss="modal" type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="reserveTicketModal">Reserve Ticket</h4>
+            <h4 class="modal-title">Reserve Ticket</h4>
           </div>
           <div class="modal-body">
             <div class="form-group">
@@ -66,8 +66,8 @@ $settings = new Settings();
               <input class="form-control" id="reservePhone" type="tel">
             </div>
             <div class="form-group">
-              <label for="cancelEmail">Email address</label>
-              <input class="form-control" id="cancelEmail" type="email" placeholder="address@mail.com">
+              <label for="reserveEmail">Email address</label>
+              <input class="form-control" id="reserveEmail" type="email" placeholder="address@mail.com">
             </div>
             <hr>
             <div class="form-group">

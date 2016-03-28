@@ -56,6 +56,7 @@ class Accounts
         // mitigate database breach by hashing password
         $password = password_hash($password, PASSWORD_DEFAULT);
 
+        // add the new row to the database
         $connect = new Connect();
         $connect->simpleInsert(
             'accounts',
@@ -64,6 +65,41 @@ class Accounts
                 'password' => $password
             ]
         );
+        $connect->close();
+
+        return true;
+    }
+
+    public function editAccount($id, $email, $password)
+    {
+        $connect = new Connect();
+
+        // update the email
+        if ($email !== '') {
+            $connect->simpleUpdate(
+                'accounts',
+                'email',
+                $email,
+                'id',
+                $id
+            );
+        }
+
+        // update the password
+        if ($password !== '') {
+            // mitigate database breach by hashing password
+            $password = password_hash($password, PASSWORD_DEFAULT);
+
+            $connect->simpleUpdate(
+                'accounts',
+                'password',
+                $password,
+                'id',
+                $id
+            );
+        }
+
+        $connect->close();
     }
 
     public function getAccountInfo($id)
