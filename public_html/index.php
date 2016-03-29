@@ -73,11 +73,6 @@ $settings = new Settings();
             <div class="form-group">
               <label for="reserveShow">Show</label>
               <select class="form-control" id="reserveShow">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
               </select>
             </div>
             <div class="form-group">
@@ -98,7 +93,7 @@ $settings = new Settings();
           </div>
           <div class="modal-footer">
             <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
-            <button class="btn btn-success" type="button">Reserve Tickets</button>
+            <button class="btn btn-success" id="reserveTicketSave" type="button">Reserve Tickets</button>
           </div>
         </div>
       </div>
@@ -116,14 +111,15 @@ $settings = new Settings();
           </div>
         </div>
         <div class="panel-footer" style="padding: 5px; border: none;">
-          <div class="row">
+          <a class="btn btn-success btn-lg btn-block" id="reserveTicketButton">Reserve Ticket</a>
+          <!--div class="row">
             <div class="col-md-3" style="margin-bottom: 5px;">
               <a class="btn btn-danger btn-lg btn-block" data-target="#cancelTicketModal" data-toggle="modal" type="button">Cancel Ticket</a>
             </div>
             <div class="col-md-9">
               <a class="btn btn-success btn-lg btn-block" data-target="#reserveTicketModal" data-toggle="modal" type="button">Reserve Ticket</a>
             </div>
-          </div>
+          </div-->
         </div>
       </div>
     </div>
@@ -132,5 +128,6 @@ $settings = new Settings();
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-notify.min.js"></script>
     <script src="js/default.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

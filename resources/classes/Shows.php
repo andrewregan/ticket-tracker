@@ -75,14 +75,39 @@ class Shows
 
         // loop through each show and add the number of seats sold
         foreach ($this->table as $key => $value) {
-            $seat_sales = $connect->simpleSelectCount(
-                'orders',
-                'show_id',
-                $value['id']
-            );
+            // strip escape characters to prevent mysql injection attacks
+            $show_id = $connect->real_escape_string($value['id']);
+
+            // create a custom query to count the total number of seats sold
+            $query = "SELECT SUM(IF(`show_id` = '" . $show_id . "', `seat_num`, 0)) AS `total` FROM `orders`";
+            $result = $connect->query($query);
+            $row = $result->fetch_assoc();
+            $seat_sales = $row['total'];
+            
             $this->table[$key]['seat_sales'] = $seat_sales;
         }
 
         $connect->close();
+    }
+
+    public function verifyShow($id)
+    {
+        $connect = new Connect();
+        $show_count = $connect->simpleSelectCount(
+            'shows',
+            'id',
+            $id
+        );
+        if ($show_count > 0) {
+            $show_enabled = $connect->simpleSelect(
+                'shows',
+                'id',
+                $id,
+                'enabled'
+            );
+        }
+        $connect->close();
+
+        return ($show_count > 0 && $show_enabled);
     }
 }
