@@ -1,4 +1,18 @@
-$('#loginButton').click(function() {
+$(document).ready(function() {
+    $('#loginButton').click(function() {
+        sendLoginInfo();
+    });
+
+    $('#loginPassword').keypress(function(e) {
+        if (e.which == 13) {
+            console.log('yay');
+            sendLoginInfo();
+            return false;
+        }
+    });
+});
+
+function sendLoginInfo() {
     // do not send empty login information to server
     if ($('#loginEmail').val() == '' || $('#loginPassword').val() == '') {
         $.notify({
@@ -69,4 +83,4 @@ $('#loginButton').click(function() {
 
         $('#loginButton').attr('disabled', false);
     });
-});
+}
