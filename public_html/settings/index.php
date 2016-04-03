@@ -129,7 +129,7 @@ $settings = new Settings();
 
     <div class="container" id="content">
       <div class="row">
-        <div class="col-md-6">
+        <!--div class="col-md-6">
           <div class="panel panel-primary">
             <div class="panel-heading">Settings</div>
             <div class="panel-body">
@@ -162,7 +162,7 @@ $settings = new Settings();
               <a class="btn btn-primary pull-right" id="settingsSave">Save Changes</a>
             </div>
           </div>
-        </div>
+        </div-->
         <div class="col-md-6">
           <div class="panel panel-info">
             <div class="panel-heading">Shows</div>
@@ -193,6 +193,8 @@ $settings = new Settings();
               <a class="btn btn-default pull-right" id="createShowButton">Create Show</a>
             </div>
           </div>
+        </div>
+        <div class="col-md-6">
           <div class="panel panel-info">
             <div class="panel-heading">Accounts</div>
             <div class="panel-body">
